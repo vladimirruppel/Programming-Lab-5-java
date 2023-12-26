@@ -9,6 +9,8 @@ public class AudioFile {
 
 	private static int totalAudioFiles = 0; // общее количество созданных аудиофайлов
 
+	private AuditionsNumber auditionsNumber;
+
 	// конструктор
 	public AudioFile(String fileName, String artistName, String trackName, int duration, int releaseYear) {
 		this.fileName = fileName;
