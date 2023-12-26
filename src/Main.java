@@ -1,5 +1,8 @@
 public class Main {
     public static void main(String[] args) {
+        MusicLibrary lib = new MusicLibrary();
+        lib.CreateTrack();
+
         AuditionsNumber an = new AuditionsNumber();
         try {
             an.setCount(-1);

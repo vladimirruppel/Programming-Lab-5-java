@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 class MusicLibrary {
 	private ArrayList<AudioFile> tracks = new ArrayList<AudioFile>();
@@ -20,6 +21,8 @@ class MusicLibrary {
 	}
 
 	// конструкторы
+	public MusicLibrary() { }
+
 	public MusicLibrary(ArrayList<AudioFile> tracks) {
 		this.tracks = tracks;
 	}
@@ -102,11 +105,9 @@ class MusicLibrary {
 		System.out.print("Введите название трека: ");
 		String trackName = scanner.nextLine();
 
-		System.out.print("Введите длительность трека: ");
-		int duration = scanner.nextInt();
+		int duration = EnterHelper.EnterInt(scanner, "Введите длительность трека: ");
 
-		System.out.print("Введите год выхода трека: ");
-		int releaseYear = scanner.nextInt();
+		int releaseYear = EnterHelper.EnterInt(scanner, "Введите год выхода трека: ");
 		scanner.nextLine();
 
 		AudioFile track = new AudioFile(fileName, artistName, trackName, duration, releaseYear);
@@ -123,16 +124,13 @@ class MusicLibrary {
 		ArrayList<AudioFile> tracks = new ArrayList<AudioFile>();
 		boolean toContinue = true;
 		do {
-			// TODO: Проверка на существование в массиве одного и того же трека
-
 			System.out.println("Откуда взять трек: ");
 			System.out.println("1. Из библиотеки");
 			System.out.println("2. Создать новый");
 
 			int answer;
 			do {
-				System.out.print("Ваш выбор: ");
-				answer = scanner.nextInt();
+				answer = EnterHelper.EnterInt(scanner, "Ваш выбор: ");
 			} while (answer < 1 || answer > 2);
 
 			if (answer == 1) { // из библиотеки
@@ -144,8 +142,7 @@ class MusicLibrary {
 
 					int trackNumber;
 					do {
-						System.out.print("Выберите номер трека для добавления в плейлист: ");
-						trackNumber = scanner.nextInt();
+						trackNumber = EnterHelper.EnterInt(scanner, "Выберите номер трека для добавления в плейлист: ");
 					} while (trackNumber < 1 || trackNumber > this.tracks.size());
 
 					AudioFile chosenTrack = this.tracks.get(trackNumber - 1);
@@ -167,7 +164,7 @@ class MusicLibrary {
 				System.out.println("1. Да");
 				System.out.println("0. Нет");
 
-				answer = scanner.nextInt();
+				answer = EnterHelper.EnterInt(scanner, "Ваш выбор: ");
 			} while (answer < 0 || answer > 1);
 
 			toContinue = answer > 0; // int >> boolean
